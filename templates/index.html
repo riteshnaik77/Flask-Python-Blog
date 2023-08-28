@@ -1,5 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
+
+<!--Whatsapp code starts here, Delete the below block, if this is not working-->
+<div class = "whatsapp">
+    <a href = "https://wa.me/919743952256" >
+        <img src="../static/assets/img/whatsapp.png" width=50 alt="" >
+</a>
+</div>
+
+
+<!--Whatsapp code ends here..Also below there is a small piece of code is written -->
+
     <!-- Page Header -->
       <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}')">
             <div class="container position-relative px-4 px-lg-5">
@@ -12,6 +23,15 @@
                     </div>
                 </div>
             </div>
+<!--          "Whatsapps CSS adding here..Remove this entire block if not working..Above also a small piece of whatsapp code is present"-->
+          <style>
+              .whatsapp{
+              position : fixed;
+              bottom: 20px;
+              right : 20px;}
+          </style>
+
+<!--          Whatsapp ends here-->
         </header>
 
 

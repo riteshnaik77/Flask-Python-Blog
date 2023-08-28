@@ -30,7 +30,6 @@ app.config.update(
     MAIL_USE_SSL = True,
     MAIL_USERNAME = params['gmail-user'],
     MAIL_PASSWORD=  params['gmail-password']
-
 )
 mail = Mail(app)
 
@@ -39,9 +38,7 @@ if(local_server):
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
 
-
 db = SQLAlchemy(app)
-
 
 class Contacts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
@@ -51,7 +48,6 @@ class Contacts(db.Model):
     date = db.Column(db.String(12), nullable=True)
     email = db.Column(db.String(20), nullable=False)
 
-
 class Posts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
@@ -60,10 +56,6 @@ class Posts(db.Model):
     tagline = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(12), nullable=True)
     img_file = db.Column(db.String(12), nullable=True)
-
-
-
-
 
 @app.route("/")
 def home():
@@ -88,10 +80,7 @@ def home():
         prev = "/?page=" + str(page - 1)
         next = "/?page=" + str(page + 1)
 
-
-
     return render_template('index.html', params=params, posts=posts, prev=prev, next=next)
-
 
 @app.route("/post/<string:post_slug>", methods=['GET'])
 def post_route(post_slug):
@@ -104,7 +93,6 @@ def post_route(post_slug):
 @app.route("/about")
 def about():
     return render_template('about.html', params=params)
-
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
@@ -190,20 +178,16 @@ def contact():
                           )
     return render_template('contact.html',params=params)
 
-
 @app.route("/ml-models")
 def mlmodel():
     return render_template("mlmodels.html", params=params)
-
 
 # Below code belongs to the News Classification
 @app.route("/news")
 def news():
     return render_template('news-home.html')
 
-
 # News Prediction Function
-
 def ValuePredictornews(to_predict_list):
     loaded_model = pickle.load(open("news_classification.pkl", "rb"))
     load_tfidf = pickle.load(open("news_classification_tfidf_vectorizer.pkl", "rb"))
