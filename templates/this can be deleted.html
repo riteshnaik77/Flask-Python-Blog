@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-8">
+                <div class="site-heading text-center">
+                    <h1>{{ params["blog_name"] }}</h1>
+                    <p class="lead">{{ params["tag_line"] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            <h1 class="mb-4"><u>Posts</u></h1>
+
+            {% for post in posts %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <a href="/post/{{ post.slug }}">{{ post.title }}</a>
+                        </h2>
+                        <h4 class="card-subtitle mb-2 text-muted">{{ post.tagline }}</h4>
+                        <p class="card-text">{{ post.content[0:143] }}...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Posted by <a href="#">Admin</a> on {{ post.date }}</small>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-primary float-left" href="{{ prev }}"> &larr; Previous</a>
+                <a class="btn btn-primary float-right" href="{{ next }}"> Next &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
